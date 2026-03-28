@@ -1,0 +1,909 @@
+{
+  "project": {
+    "title": "Accounting Jeopardy",
+    "format": "multiple_choice",
+    "audience": "MBA accounting class",
+    "description": "A Jeopardy-style accounting review game with six categories and five clue values per category in Round 1 and Round 2. Each clue is multiple choice with one correct answer.",
+    "ui_notes": {
+      "board_style": "classic_jeopardy_grid",
+      "categories_count": 6,
+      "rows_per_category": 5,
+      "round_1_value_labels": [
+        200,
+        400,
+        600,
+        800,
+        1000
+      ],
+      "round_2_value_labels": [
+        400,
+        800,
+        1200,
+        1600,
+        2000
+      ],
+      "show_correct_answer_after_selection": true,
+      "allow_score_tracking": true,
+      "randomize_answer_order": false
+    }
+  },
+  "round_1": {
+    "title": "Jeopardy",
+    "value_labels": [
+      200,
+      400,
+      600,
+      800,
+      1000
+    ],
+    "categories": [
+      {
+        "id": "revenue_recognition",
+        "title": "Revenue Recognition",
+        "clues": [
+          {
+            "value": 200,
+            "prompt": "Revenue is recognized when:",
+            "choices": [
+              "Cash is received",
+              "The contract is signed",
+              "Control of goods/services transfers to the customer",
+              "The invoice is sent"
+            ],
+            "correct_index": 2,
+            "explanation": "Under GAAP, revenue is recognized when control transfers and the performance obligation is satisfied."
+          },
+          {
+            "value": 400,
+            "prompt": "A company can recognize revenue before cash is received if:",
+            "choices": [
+              "The customer promises to pay",
+              "The performance obligation is satisfied",
+              "The company records deferred revenue",
+              "Inventory is shipped to a warehouse"
+            ],
+            "correct_index": 1,
+            "explanation": "Revenue recognition does not require cash receipt if the earnings process is complete."
+          },
+          {
+            "value": 600,
+            "prompt": "Cash received before delivering a service is recorded as:",
+            "choices": [
+              "Accounts receivable",
+              "Revenue",
+              "Deferred (unearned) revenue",
+              "Expense"
+            ],
+            "correct_index": 2,
+            "explanation": "Cash received in advance creates a liability until the service is performed."
+          },
+          {
+            "value": 800,
+            "prompt": "In bundled contracts, revenue is allocated based on:",
+            "choices": [
+              "Historical cost",
+              "Market share",
+              "Relative standalone selling prices",
+              "Total contract value evenly"
+            ],
+            "correct_index": 2,
+            "explanation": "Multi-element contracts allocate transaction price using relative standalone selling prices."
+          },
+          {
+            "value": 1000,
+            "prompt": "Which method recognizes revenue over time based on progress?",
+            "choices": [
+              "FIFO",
+              "Cost-to-cost method",
+              "Direct write-off method",
+              "Completed contract method"
+            ],
+            "correct_index": 1,
+            "explanation": "The cost-to-cost method is a common percentage-of-completion approach."
+          }
+        ]
+      },
+      {
+        "id": "sales_allowances",
+        "title": "Sales Allowances",
+        "clues": [
+          {
+            "value": 200,
+            "prompt": "Sales are reported on the income statement as:",
+            "choices": [
+              "Gross sales",
+              "Net sales",
+              "Cash sales",
+              "Credit sales"
+            ],
+            "correct_index": 1,
+            "explanation": "Revenue is reported net of expected returns, discounts, and incentives."
+          },
+          {
+            "value": 400,
+            "prompt": "The allowance for sales returns is used to:",
+            "choices": [
+              "Increase revenue",
+              "Estimate future returns",
+              "Record actual returns only",
+              "Track inventory purchases"
+            ],
+            "correct_index": 1,
+            "explanation": "The allowance estimates future merchandise returns in the same period as the sale."
+          },
+          {
+            "value": 600,
+            "prompt": "Recording estimated returns results in:",
+            "choices": [
+              "Increased revenue",
+              "Decreased expenses",
+              "Decreased revenue",
+              "Increased assets only"
+            ],
+            "correct_index": 2,
+            "explanation": "Expected returns reduce current-period revenue."
+          },
+          {
+            "value": 800,
+            "prompt": "When estimating returns, companies also increase:",
+            "choices": [
+              "Cash",
+              "Accounts payable",
+              "Inventory (expected returns)",
+              "Sales revenue"
+            ],
+            "correct_index": 2,
+            "explanation": "Companies restore the inventory expected to be returned and reduce COGS accordingly."
+          },
+          {
+            "value": 1000,
+            "prompt": "Why are sales returns estimated in the same period as sales?",
+            "choices": [
+              "Conservatism principle",
+              "Matching principle",
+              "Revenue maximization",
+              "Cash basis accounting"
+            ],
+            "correct_index": 1,
+            "explanation": "Estimating returns in the same period matches the reduction in revenue to the related sale."
+          }
+        ]
+      },
+      {
+        "id": "accounts_receivable_bad_debt",
+        "title": "Accounts Receivable & Bad Debt",
+        "clues": [
+          {
+            "value": 200,
+            "prompt": "The allowance for doubtful accounts is used to:",
+            "choices": [
+              "Increase revenue",
+              "Reduce net accounts receivable",
+              "Record cash collections",
+              "Track inventory losses"
+            ],
+            "correct_index": 1,
+            "explanation": "Allowance for doubtful accounts is a contra-asset that reduces receivables to net realizable value."
+          },
+          {
+            "value": 400,
+            "prompt": "The percentage of credit sales method focuses on:",
+            "choices": [
+              "Balance sheet accuracy",
+              "Matching bad debt expense to sales",
+              "Writing off accounts",
+              "Cash flow timing"
+            ],
+            "correct_index": 1,
+            "explanation": "This income statement approach emphasizes matching bad debt expense to the period's sales."
+          },
+          {
+            "value": 600,
+            "prompt": "The aging method focuses on:",
+            "choices": [
+              "Matching revenue",
+              "Estimating net realizable value of receivables",
+              "Cash collection speed",
+              "Recording sales"
+            ],
+            "correct_index": 1,
+            "explanation": "The aging method is a balance sheet approach that targets the desired ending allowance."
+          },
+          {
+            "value": 800,
+            "prompt": "Writing off an uncollectible account affects:",
+            "choices": [
+              "Revenue and cash",
+              "Accounts receivable and allowance",
+              "Expense and cash",
+              "Inventory and revenue"
+            ],
+            "correct_index": 1,
+            "explanation": "A write-off debits the allowance and credits accounts receivable."
+          },
+          {
+            "value": 1000,
+            "prompt": "Accounts receivable turnover measures:",
+            "choices": [
+              "Inventory efficiency",
+              "Profitability",
+              "Speed of collection",
+              "Sales growth"
+            ],
+            "correct_index": 2,
+            "explanation": "A/R turnover indicates how many times receivables are collected during the year."
+          }
+        ]
+      },
+      {
+        "id": "inventory_cogs",
+        "title": "Inventory & COGS",
+        "clues": [
+          {
+            "value": 200,
+            "prompt": "Cost of goods available for sale equals:",
+            "choices": [
+              "Sales + inventory",
+              "Beginning inventory + purchases",
+              "Ending inventory + purchases",
+              "Sales - purchases"
+            ],
+            "correct_index": 1,
+            "explanation": "Cost of goods available for sale is beginning inventory plus purchases."
+          },
+          {
+            "value": 400,
+            "prompt": "COGS is recorded when:",
+            "choices": [
+              "Inventory is purchased",
+              "Inventory is sold",
+              "Cash is received",
+              "Orders are placed"
+            ],
+            "correct_index": 1,
+            "explanation": "The cost of inventory becomes expense when the related goods are sold."
+          },
+          {
+            "value": 600,
+            "prompt": "FIFO assumes:",
+            "choices": [
+              "Newest inventory is sold first",
+              "Oldest inventory is sold first",
+              "Average cost is used",
+              "Inventory is expensed immediately"
+            ],
+            "correct_index": 1,
+            "explanation": "FIFO stands for first-in, first-out."
+          },
+          {
+            "value": 800,
+            "prompt": "During inflation, which method results in highest COGS?",
+            "choices": [
+              "FIFO",
+              "LIFO",
+              "Average cost",
+              "Specific identification"
+            ],
+            "correct_index": 1,
+            "explanation": "LIFO uses the newest, higher costs first in inflationary periods."
+          },
+          {
+            "value": 1000,
+            "prompt": "Weighted average cost:",
+            "choices": [
+              "Uses oldest costs",
+              "Uses newest costs",
+              "Uses average cost of all units",
+              "Ignores purchases"
+            ],
+            "correct_index": 2,
+            "explanation": "Average cost assigns a weighted average unit cost to units sold and ending inventory."
+          }
+        ]
+      },
+      {
+        "id": "financial_statement_effects",
+        "title": "Financial Statement Effects",
+        "clues": [
+          {
+            "value": 200,
+            "prompt": "Gross profit equals:",
+            "choices": [
+              "Sales - expenses",
+              "Sales - COGS",
+              "Revenue - liabilities",
+              "Cash - expenses"
+            ],
+            "correct_index": 1,
+            "explanation": "Gross profit is net sales minus cost of goods sold."
+          },
+          {
+            "value": 400,
+            "prompt": "In inflation, FIFO results in:",
+            "choices": [
+              "Lower income",
+              "Higher income",
+              "No change",
+              "Lower inventory"
+            ],
+            "correct_index": 1,
+            "explanation": "FIFO yields lower COGS and therefore higher gross profit and net income during inflation."
+          },
+          {
+            "value": 600,
+            "prompt": "LIFO results in lower taxes because it:",
+            "choices": [
+              "Increases revenue",
+              "Decreases expenses",
+              "Increases COGS",
+              "Increases assets"
+            ],
+            "correct_index": 2,
+            "explanation": "Higher COGS lowers taxable income."
+          },
+          {
+            "value": 800,
+            "prompt": "The LIFO reserve represents:",
+            "choices": [
+              "Cash savings",
+              "Difference between FIFO and LIFO inventory",
+              "Sales growth",
+              "Tax liability"
+            ],
+            "correct_index": 1,
+            "explanation": "LIFO reserve is the gap between inventory under FIFO and inventory reported under LIFO."
+          },
+          {
+            "value": 1000,
+            "prompt": "The LIFO conformity rule requires:",
+            "choices": [
+              "FIFO for taxes",
+              "Same method for tax and financial reporting",
+              "Use of average cost",
+              "IFRS compliance"
+            ],
+            "correct_index": 1,
+            "explanation": "If LIFO is used for tax reporting, it must also be used for financial reporting."
+          }
+        ]
+      },
+      {
+        "id": "ratios_analysis",
+        "title": "Ratios & Analysis",
+        "clues": [
+          {
+            "value": 200,
+            "prompt": "Accounts receivable turnover equals:",
+            "choices": [
+              "Accounts receivable \u00f7 Sales",
+              "Sales \u00f7 Average Accounts Receivable",
+              "Sales \u00f7 Inventory",
+              "Cash \u00f7 Accounts Receivable"
+            ],
+            "correct_index": 1,
+            "explanation": "A/R turnover measures how quickly receivables are collected."
+          },
+          {
+            "value": 400,
+            "prompt": "Days sales outstanding (DSO) measures:",
+            "choices": [
+              "Profit margin",
+              "Inventory turnover",
+              "Days to collect receivables",
+              "Cash flow"
+            ],
+            "correct_index": 2,
+            "explanation": "DSO estimates the average collection period in days."
+          },
+          {
+            "value": 600,
+            "prompt": "The DSO formula is:",
+            "choices": [
+              "Sales \u00f7 365",
+              "365 \u00f7 A/R turnover",
+              "A/R \u00f7 Sales",
+              "COGS \u00f7 Inventory"
+            ],
+            "correct_index": 1,
+            "explanation": "DSO converts turnover into days outstanding."
+          },
+          {
+            "value": 800,
+            "prompt": "An increasing DSO likely indicates:",
+            "choices": [
+              "Faster collections",
+              "Stronger cash flow",
+              "Slower collections",
+              "Higher profit"
+            ],
+            "correct_index": 2,
+            "explanation": "A higher DSO means customers are taking longer to pay."
+          },
+          {
+            "value": 1000,
+            "prompt": "If DSO decreases, cash flow will typically:",
+            "choices": [
+              "Decrease",
+              "Stay the same",
+              "Increase",
+              "Become negative"
+            ],
+            "correct_index": 2,
+            "explanation": "Faster collections free up cash and improve operating cash flow."
+          }
+        ]
+      }
+    ]
+  },
+  "round_2": {
+    "title": "Double Jeopardy",
+    "value_labels": [
+      400,
+      800,
+      1200,
+      1600,
+      2000
+    ],
+    "categories": [
+      {
+        "id": "revenue_recognition_advanced",
+        "title": "Revenue Recognition 2",
+        "clues": [
+          {
+            "value": 400,
+            "prompt": "A company receives cash for a 1-year subscription. At the end of month 3, how much revenue should be recognized?",
+            "choices": [
+              "100%",
+              "75%",
+              "25%",
+              "0%"
+            ],
+            "correct_index": 2,
+            "explanation": "Revenue is recognized over time as the service is provided. After 3 of 12 months, 25% is recognized."
+          },
+          {
+            "value": 800,
+            "prompt": "A bundled contract includes hardware and one year of support. Which item determines how the transaction price is split between the two obligations?",
+            "choices": [
+              "Cash received",
+              "Cost of production",
+              "Standalone selling prices",
+              "Inventory value"
+            ],
+            "correct_index": 2,
+            "explanation": "Bundled arrangements allocate revenue based on relative standalone selling prices."
+          },
+          {
+            "value": 1200,
+            "prompt": "A customer prepays for services to be delivered next quarter. On the receipt date, the company should record:",
+            "choices": [
+              "Revenue",
+              "Accounts receivable",
+              "Deferred revenue",
+              "Bad debt expense"
+            ],
+            "correct_index": 2,
+            "explanation": "Cash received before performance creates a contract liability, commonly called deferred revenue."
+          },
+          {
+            "value": 1600,
+            "prompt": "Which situation most clearly supports recognizing revenue over time rather than at a point in time?",
+            "choices": [
+              "A cash sale of office supplies",
+              "A long-term construction contract with progress measured each period",
+              "A one-time sale of equipment delivered immediately",
+              "A retailer's weekend sale"
+            ],
+            "correct_index": 1,
+            "explanation": "Long-term contracts often satisfy performance obligations over time and use progress measures such as cost-to-cost."
+          },
+          {
+            "value": 2000,
+            "prompt": "If estimated total costs on a long-term contract rise significantly, the amount of revenue recognized to date under the cost-to-cost method will generally:",
+            "choices": [
+              "Increase",
+              "Decrease",
+              "Stay the same automatically",
+              "Convert to deferred revenue"
+            ],
+            "correct_index": 1,
+            "explanation": "A higher estimate of total costs reduces the percentage complete, which reduces cumulative revenue recognized."
+          }
+        ]
+      },
+      {
+        "id": "allowances_estimates",
+        "title": "Allowances & Estimates",
+        "clues": [
+          {
+            "value": 400,
+            "prompt": "If a company underestimates sales returns, current-period income will most likely be:",
+            "choices": [
+              "Understated",
+              "Overstated",
+              "Unaffected",
+              "Deferred"
+            ],
+            "correct_index": 1,
+            "explanation": "Underestimating returns means revenue is reduced too little, so income is overstated."
+          },
+          {
+            "value": 800,
+            "prompt": "An increase in the allowance for sales returns will usually:",
+            "choices": [
+              "Increase revenue",
+              "Decrease revenue",
+              "Increase cash",
+              "Decrease liabilities"
+            ],
+            "correct_index": 1,
+            "explanation": "Expected returns are recorded as a reduction of current-period revenue."
+          },
+          {
+            "value": 1200,
+            "prompt": "If management overestimates return allowances in the current year and actual returns are lower, the excess balance will generally:",
+            "choices": [
+              "Be recognized immediately as current-year revenue",
+              "Remain in the reserve and reduce future revenue reductions",
+              "Be recorded as cash",
+              "Be transferred to accounts payable"
+            ],
+            "correct_index": 1,
+            "explanation": "Excess reserves typically remain in the allowance and affect future periods through lower subsequent additions."
+          },
+          {
+            "value": 1600,
+            "prompt": "Which ratio is most useful for evaluating whether a company's estimate of sales allowances is reasonably aligned with actual deductions?",
+            "choices": [
+              "Gross margin ratio",
+              "Adequacy ratio",
+              "Current ratio",
+              "Inventory turnover"
+            ],
+            "correct_index": 1,
+            "explanation": "The adequacy ratio compares estimated allowances to actual deductions to assess estimation quality."
+          },
+          {
+            "value": 2000,
+            "prompt": "A company deliberately builds overly conservative sales return reserves in a strong year so it can release them later. This is commonly described as:",
+            "choices": [
+              "Revenue acceleration",
+              "Cookie jar reserving",
+              "LIFO liquidation",
+              "Channel stuffing"
+            ],
+            "correct_index": 1,
+            "explanation": "Cookie jar reserves refer to intentionally over-accrued estimates that can boost income in later periods."
+          }
+        ]
+      },
+      {
+        "id": "receivables_analysis_advanced",
+        "title": "Receivables Analysis",
+        "clues": [
+          {
+            "value": 400,
+            "prompt": "If accounts receivable rises faster than sales, this may indicate:",
+            "choices": [
+              "Improved collections",
+              "Slower collections",
+              "Lower revenue",
+              "Higher margins"
+            ],
+            "correct_index": 1,
+            "explanation": "Receivables growing faster than sales often signal slower customer payments or looser credit policies."
+          },
+          {
+            "value": 800,
+            "prompt": "Which method best estimates the ending allowance needed to report accounts receivable at net realizable value?",
+            "choices": [
+              "Direct write-off",
+              "Percentage of sales",
+              "Aging method",
+              "FIFO"
+            ],
+            "correct_index": 2,
+            "explanation": "The aging method is a balance sheet approach focused on net realizable value."
+          },
+          {
+            "value": 1200,
+            "prompt": "Writing off a specific uncollectible account under the allowance method will usually:",
+            "choices": [
+              "Reduce net income",
+              "Reduce net accounts receivable",
+              "Have no effect on net accounts receivable",
+              "Increase bad debt expense"
+            ],
+            "correct_index": 2,
+            "explanation": "A write-off reduces both gross receivables and the allowance, leaving net receivables unchanged."
+          },
+          {
+            "value": 1600,
+            "prompt": "If days sales outstanding increases from 32 days to 47 days while sales stay stable, the most likely interpretation is:",
+            "choices": [
+              "Customers are paying faster",
+              "Collections are slowing and more cash is tied up",
+              "Bad debt expense must be falling",
+              "Inventory turnover is improving"
+            ],
+            "correct_index": 1,
+            "explanation": "A higher DSO means cash collection is taking longer, which ties up working capital."
+          },
+          {
+            "value": 2000,
+            "prompt": "If the allowance for doubtful accounts as a percentage of gross receivables falls sharply even though delinquent accounts are rising, an analyst should be most concerned about:",
+            "choices": [
+              "Potential understatement of bad debt expense",
+              "Overstated cash flow from investing",
+              "Inventory obsolescence",
+              "Excessive depreciation"
+            ],
+            "correct_index": 0,
+            "explanation": "A shrinking reserve despite worsening credit quality can indicate aggressive estimates and understated bad debt expense."
+          }
+        ]
+      },
+      {
+        "id": "inventory_impact_comparisons",
+        "title": "Inventory Impact",
+        "clues": [
+          {
+            "value": 400,
+            "prompt": "In an inflationary environment, which inventory method produces the highest ending inventory?",
+            "choices": [
+              "LIFO",
+              "FIFO",
+              "Average cost",
+              "Specific identification"
+            ],
+            "correct_index": 1,
+            "explanation": "FIFO leaves the most recent, higher costs in ending inventory during inflation."
+          },
+          {
+            "value": 800,
+            "prompt": "Switching from LIFO to FIFO during inflation will most likely:",
+            "choices": [
+              "Decrease income",
+              "Increase income",
+              "Decrease inventory",
+              "Have no effect"
+            ],
+            "correct_index": 1,
+            "explanation": "FIFO lowers COGS relative to LIFO in inflationary periods, increasing income."
+          },
+          {
+            "value": 1200,
+            "prompt": "The LIFO reserve is best described as:",
+            "choices": [
+              "The difference between FIFO and LIFO inventory values",
+              "Cash set aside for tax payments",
+              "A reserve for bad inventory",
+              "The difference between sales and COGS"
+            ],
+            "correct_index": 0,
+            "explanation": "LIFO reserve reconciles inventory reported under LIFO to a FIFO-equivalent amount."
+          },
+          {
+            "value": 1600,
+            "prompt": "In inflation, a company using LIFO instead of FIFO will generally report:",
+            "choices": [
+              "Lower COGS and higher taxes",
+              "Higher COGS and lower taxes",
+              "Higher inventory and higher income",
+              "No tax difference"
+            ],
+            "correct_index": 1,
+            "explanation": "LIFO produces higher COGS and therefore lower taxable income when costs are rising."
+          },
+          {
+            "value": 2000,
+            "prompt": "If a LIFO company experiences a LIFO liquidation, current-period gross profit will likely:",
+            "choices": [
+              "Decrease because newer costs flow to COGS",
+              "Increase because older, lower costs flow to COGS",
+              "Stay unchanged by definition",
+              "Convert directly to retained earnings"
+            ],
+            "correct_index": 1,
+            "explanation": "A LIFO liquidation pulls older, cheaper layers into COGS, increasing reported gross profit."
+          }
+        ]
+      },
+      {
+        "id": "financial_statement_linkages",
+        "title": "Statement Linkages",
+        "clues": [
+          {
+            "value": 400,
+            "prompt": "Net income increases will directly increase:",
+            "choices": [
+              "Cash",
+              "Retained earnings",
+              "Liabilities",
+              "Inventory"
+            ],
+            "correct_index": 1,
+            "explanation": "Net income flows into retained earnings through the statement of stockholders' equity."
+          },
+          {
+            "value": 800,
+            "prompt": "Recording depreciation expense will usually:",
+            "choices": [
+              "Increase cash",
+              "Decrease assets and income",
+              "Increase revenue",
+              "Increase liabilities"
+            ],
+            "correct_index": 1,
+            "explanation": "Depreciation reduces income and lowers the carrying value of long-lived assets over time."
+          },
+          {
+            "value": 1200,
+            "prompt": "When a company records an accrued expense at period-end, the immediate effect is to:",
+            "choices": [
+              "Increase cash and income",
+              "Increase a liability and decrease income",
+              "Decrease liabilities and increase cash",
+              "Increase revenue and retained earnings"
+            ],
+            "correct_index": 1,
+            "explanation": "Accrued expenses recognize an incurred cost and a related liability before cash is paid."
+          },
+          {
+            "value": 1600,
+            "prompt": "A customer prepays for services to be performed next month. On the payment date, which statements are affected?",
+            "choices": [
+              "Balance sheet only",
+              "Income statement only",
+              "Income statement and statement of cash flows only",
+              "All four statements through net income"
+            ],
+            "correct_index": 0,
+            "explanation": "The entry increases cash and deferred revenue; no revenue is recognized yet."
+          },
+          {
+            "value": 2000,
+            "prompt": "A company sells inventory for cash above cost. Which combined effect is correct?",
+            "choices": [
+              "Cash up, inventory up, revenue up",
+              "Cash up, inventory down, retained earnings up",
+              "Cash down, COGS down, liabilities up",
+              "Revenue down, inventory up, equity down"
+            ],
+            "correct_index": 1,
+            "explanation": "The sale increases cash, decreases inventory, records revenue and COGS, and ultimately raises retained earnings through net income."
+          }
+        ]
+      },
+      {
+        "id": "real_world_scenarios",
+        "title": "Real-World Scenarios",
+        "clues": [
+          {
+            "value": 400,
+            "prompt": "A company delays paying suppliers until after year-end. The most likely short-term effect is:",
+            "choices": [
+              "Decreased operating cash flow",
+              "Increased operating cash flow",
+              "Decreased revenue",
+              "Increased expense"
+            ],
+            "correct_index": 1,
+            "explanation": "Holding cash longer by delaying payments increases operating cash flow in the current period."
+          },
+          {
+            "value": 800,
+            "prompt": "A large increase in accrued expenses on the cash flow statement will often:",
+            "choices": [
+              "Decrease net income",
+              "Increase operating cash flow",
+              "Reduce liabilities",
+              "Increase inventory"
+            ],
+            "correct_index": 1,
+            "explanation": "An increase in accrued expenses means costs were recognized without yet paying cash, boosting CFO under the indirect method."
+          },
+          {
+            "value": 1200,
+            "prompt": "A company reports strong net income but weak operating cash flow because accounts receivable increased sharply. This most likely means:",
+            "choices": [
+              "Collections slowed relative to sales",
+              "Inventory was overstated",
+              "Depreciation was too low",
+              "The company repaid debt"
+            ],
+            "correct_index": 0,
+            "explanation": "Higher receivables suggest sales were recognized but cash has not yet been collected."
+          },
+          {
+            "value": 1600,
+            "prompt": "A retailer aggressively discounts merchandise to clear inventory. Which metric is most likely to decline first?",
+            "choices": [
+              "Gross margin",
+              "Accounts payable turnover",
+              "Current ratio",
+              "Depreciation expense"
+            ],
+            "correct_index": 0,
+            "explanation": "Heavy discounting lowers selling prices relative to cost and pressures gross margin."
+          },
+          {
+            "value": 2000,
+            "prompt": "A company builds a new facility and incurs major contractor costs that have not yet been paid by year-end. Which interpretation is most accurate if accrued expenses rise and CFO looks unusually strong?",
+            "choices": [
+              "Core operations permanently improved",
+              "Cash inflows from customers surged",
+              "Cash flow is temporarily boosted by unpaid obligations",
+              "Revenue was overstated"
+            ],
+            "correct_index": 2,
+            "explanation": "Unpaid but accrued costs can temporarily raise operating cash flow because expenses are recognized before the cash outflow occurs."
+          }
+        ]
+      }
+    ]
+  },
+  "optional_features": {
+    "daily_double": {
+      "enabled": true,
+      "sample_prompt": "Which allowance estimation method focuses primarily on net realizable value?",
+      "choices": [
+        "Percentage of sales",
+        "Aging of accounts receivable",
+        "FIFO",
+        "LIFO"
+      ],
+      "correct_index": 1
+    },
+    "final_jeopardy": {
+      "enabled": true,
+      "prompt": "A company switches from LIFO to FIFO during inflation. What is the most likely effect?",
+      "choices": [
+        "Lower income and higher taxes",
+        "Higher income and higher taxes",
+        "No effect on reported numbers",
+        "Lower inventory and lower income"
+      ],
+      "correct_index": 1,
+      "explanation": "FIFO lowers COGS in inflationary periods, which increases income and taxable income."
+    },
+    "daily_double_round_1": {
+      "enabled": true,
+      "sample_prompt": "Which allowance estimation method focuses primarily on net realizable value?",
+      "choices": [
+        "Percentage of sales",
+        "Aging of accounts receivable",
+        "FIFO",
+        "LIFO"
+      ],
+      "correct_index": 1,
+      "explanation": "The aging method is a balance sheet approach focused on reporting receivables at net realizable value."
+    },
+    "daily_doubles_round_2": [
+      {
+        "enabled": true,
+        "prompt": "A company sells a $1,200 annual service contract and receives full payment upfront. After 9 months, how much revenue should have been recognized?",
+        "choices": [
+          "$1,200",
+          "$900",
+          "$300",
+          "$0"
+        ],
+        "correct_index": 1,
+        "explanation": "Revenue is recognized over time. After 9 of 12 months, 75% of $1,200, or $900, should be recognized."
+      },
+      {
+        "enabled": true,
+        "prompt": "A company records $2,000 of accrued wages at the end of the period. What is the impact?",
+        "choices": [
+          "Assets increase and revenue increases",
+          "Expenses increase and liabilities increase",
+          "Cash decreases and expenses increase",
+          "Revenue decreases and liabilities increase"
+        ],
+        "correct_index": 1,
+        "explanation": "Incurred wages are recognized as an expense and a liability because they have not yet been paid. Cash remains unchanged for now."
+      }
+    ]
+  }
+}

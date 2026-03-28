@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accounting Jeopardy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p id="round-indicator" class="eyebrow">Loading round...</p>
+        <h1 id="game-title">Jeopardy</h1>
+        <p id="game-description" class="subtitle"></p>
+      </div>
+      <div class="topbar-actions">
+        <button id="reset-game" class="secondary-button" type="button">Reset Game</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="score-panel" aria-label="Team scores">
+        <article class="team-card" data-team="0">
+          <div>
+            <p class="team-label" id="team-1-name">Team 1</p>
+            <h2 id="team-1-score">$0</h2>
+          </div>
+        </article>
+
+        <article class="team-card" data-team="1">
+          <div>
+            <p class="team-label" id="team-2-name">Team 2</p>
+            <h2 id="team-2-score">$0</h2>
+          </div>
+        </article>
+
+        <section class="status-card">
+          <p class="team-label">Game Status</p>
+          <p id="status-text">Loading game board...</p>
+          <button id="start-final" class="primary-button" type="button" disabled>Open Final Jeopardy</button>
+        </section>
+      </section>
+
+      <section class="board-panel">
+        <div id="board" class="board" aria-live="polite"></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="start-modal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <p class="modal-kicker">Game Setup</p>
+          <h2>Enter Team Names</h2>
+        </div>
+      </div>
+      <div class="modal-body">
+        <label class="wager-field">
+          Team 1 Name
+          <input id="team-1-input" type="text" maxlength="40" placeholder="Team 1">
+        </label>
+        <label class="wager-field">
+          Team 2 Name
+          <input id="team-2-input" type="text" maxlength="40" placeholder="Team 2">
+        </label>
+        <button id="start-game" class="primary-button" type="button">Start Game</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="clue-modal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <p id="modal-category" class="modal-kicker"></p>
+          <h2 id="modal-title"></h2>
+        </div>
+        <button id="close-modal" class="icon-button" type="button" aria-label="Close">&times;</button>
+      </div>
+
+      <div id="modal-body" class="modal-body">
+        <section id="daily-double-setup" hidden>
+          <p class="prompt">Daily Double. Choose the team and set the wager before revealing the clue.</p>
+          <div class="daily-double-grid">
+            <label class="wager-field">
+              Team
+              <select id="daily-double-team">
+                <option id="daily-double-option-0" value="0">Team 1</option>
+                <option id="daily-double-option-1" value="1">Team 2</option>
+              </select>
+            </label>
+            <label class="wager-field">
+              Wager
+              <input id="daily-double-wager" type="number" min="0" step="100" value="0">
+            </label>
+          </div>
+          <p id="daily-double-limit" class="helper-text"></p>
+          <button id="start-daily-double" class="primary-button" type="button">Reveal Daily Double Clue</button>
+        </section>
+
+        <section id="clue-question-block" hidden>
+          <p id="modal-prompt" class="prompt"></p>
+          <div id="modal-choices" class="choices"></div>
+        </section>
+
+        <div id="modal-feedback" class="feedback" hidden></div>
+
+        <div id="modal-scoring" class="scoring-actions" hidden>
+          <p>Set each team's score change before continuing:</p>
+          <p id="scoring-summary" class="helper-text"></p>
+          <div class="score-adjust-grid">
+            <section class="score-adjust-card">
+              <p class="team-label" id="score-adjust-name-0">Team 1</p>
+              <div class="segmented-control">
+                <button type="button" data-team-adjust-select="0" data-mode="add">Up</button>
+                <button type="button" data-team-adjust-select="0" data-mode="none" class="selected">No Change</button>
+                <button type="button" data-team-adjust-select="0" data-mode="subtract">Down</button>
+              </div>
+            </section>
+            <section class="score-adjust-card">
+              <p class="team-label" id="score-adjust-name-1">Team 2</p>
+              <div class="segmented-control">
+                <button type="button" data-team-adjust-select="1" data-mode="add">Up</button>
+                <button type="button" data-team-adjust-select="1" data-mode="none" class="selected">No Change</button>
+                <button type="button" data-team-adjust-select="1" data-mode="subtract">Down</button>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <button id="continue-clue" class="primary-button continue-button" type="button" hidden>Continue</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="final-modal" class="modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <p class="modal-kicker">Final Jeopardy</p>
+          <h2 id="final-title">Final Question</h2>
+        </div>
+        <button id="close-final-modal" class="icon-button" type="button" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p id="final-prompt" class="prompt"></p>
+        <div id="final-choices" class="choices"></div>
+        <div id="final-feedback" class="feedback" hidden></div>
+        <div id="final-scoring" class="final-scoring">
+          <label class="wager-field">
+            <span id="final-wager-label-1">Team 1</span> Wager
+            <input id="final-wager-1" type="number" min="0" step="100" value="0">
+          </label>
+          <label class="wager-field">
+            <span id="final-wager-label-2">Team 2</span> Wager
+            <input id="final-wager-2" type="number" min="0" step="100" value="0">
+          </label>
+        </div>
+        <div id="final-award-actions" class="award-buttons" hidden>
+          <button id="final-team-0-button" type="button" data-final-team="0">Team 1 Correct</button>
+          <button id="final-team-1-button" type="button" data-final-team="1">Team 2 Correct</button>
+          <button type="button" data-final-team="both">Both Correct</button>
+          <button type="button" data-final-team="none" class="secondary-button">Both Incorrect</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <template id="board-cell-template">
+    <button type="button" class="clue-tile"></button>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
