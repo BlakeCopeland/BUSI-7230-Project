@@ -38,6 +38,10 @@ button {
   cursor: pointer;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .app-shell {
   width: min(1320px, calc(100% - 2rem));
   margin: 0 auto;
@@ -344,6 +348,30 @@ h1 {
   display: grid;
   gap: 0.45rem;
   margin-bottom: 0.8rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.mode-toggle {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0 0 1rem;
+  padding: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.mode-toggle legend {
+  color: var(--muted);
+  font-weight: 700;
+  padding: 0 0.35rem;
+}
+
+.mode-toggle label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .wager-field input,

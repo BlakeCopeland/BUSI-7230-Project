@@ -2,8 +2,10 @@
 
 const state = {
   spec: null,
+  teamCount: 2,
   teamNames: ["Team 1", "Team 2"],
   teams: [0, 0],
+  finalWagers: [0, 0],
   roundOrder: [],
   currentRoundIndex: 0,
   usedCluesByRound: {},
@@ -41,6 +43,17 @@ const dailyDoubleTeamSelect = document.getElementById("daily-double-team");
 const dailyDoubleWagerInput = document.getElementById("daily-double-wager");
 const dailyDoubleLimitElement = document.getElementById("daily-double-limit");
 const startDailyDoubleButton = document.getElementById("start-daily-double");
+const teamTwoCard = document.querySelector('[data-team="1"]');
+const teamTwoInputField = document.getElementById("team-2-input-field");
+const dailyDoubleTeamField = dailyDoubleTeamSelect.closest(".wager-field");
+const finalWagerFields = [
+  document.getElementById("final-wager-1").closest(".wager-field"),
+  document.getElementById("final-wager-2").closest(".wager-field"),
+];
+const finalBothButton = document.querySelector('[data-final-team="both"]');
+const finalNoneButton = document.querySelector('[data-final-team="none"]');
+const lockFinalWagersButton = document.getElementById("lock-final-wagers");
+const continueFinalButton = document.getElementById("continue-final");
 
 const teamNameElements = [
   document.getElementById("team-1-name"),
@@ -69,8 +82,14 @@ document.getElementById("close-final-modal").addEventListener("click", () => fin
 document.getElementById("start-game").addEventListener("click", startGame);
 primaryActionButton.addEventListener("click", handlePrimaryAction);
 continueClueButton.addEventListener("click", handleClueContinue);
+continueFinalButton.addEventListener("click", () => finalModal.close());
+lockFinalWagersButton.addEventListener("click", lockFinalWagers);
 startDailyDoubleButton.addEventListener("click", startDailyDoubleRound);
 dailyDoubleTeamSelect.addEventListener("change", updateDailyDoubleLimit);
+
+document.querySelectorAll('[name="team-count"]').forEach((radio) => {
+  radio.addEventListener("change", updateSetupMode);
+});
 
 document.querySelectorAll("[data-team-adjust-select]").forEach((button) => {
   button.addEventListener("click", () => {
@@ -174,9 +193,11 @@ function getDailyDoublePool(roundKey) {
 }
 
 function startGame() {
+  const selectedTeamCount = Number(document.querySelector('[name="team-count"]:checked').value);
   const teamOneName = document.getElementById("team-1-input").value.trim() || "Team 1";
   const teamTwoName = document.getElementById("team-2-input").value.trim() || "Team 2";
-  state.teamNames = [teamOneName, teamTwoName];
+  state.teamCount = selectedTeamCount;
+  state.teamNames = [teamOneName, selectedTeamCount === 1 ? "Team 2" : teamTwoName];
   state.gameStarted = true;
   applyTeamNames();
   updateStatus();
@@ -184,6 +205,8 @@ function startGame() {
 }
 
 function applyTeamNames() {
+  const soloMode = isSoloMode();
+
   teamNameElements.forEach((element, index) => {
     element.textContent = state.teamNames[index];
   });
@@ -203,6 +226,16 @@ function applyTeamNames() {
   finalCorrectButtons.forEach((button, index) => {
     button.textContent = `${state.teamNames[index]} Correct`;
   });
+
+  teamTwoCard.hidden = soloMode;
+  teamTwoInputField.hidden = soloMode;
+  scoreAdjustNameElements[1].closest(".score-adjust-card").hidden = soloMode;
+  dailyDoubleTeamField.hidden = soloMode;
+  finalWagerFields[1].hidden = soloMode;
+  finalCorrectButtons[1].hidden = soloMode;
+  finalBothButton.hidden = soloMode;
+  finalCorrectButtons[0].textContent = soloMode ? "Correct" : `${state.teamNames[0]} Correct`;
+  finalNoneButton.textContent = soloMode ? "Incorrect" : "Both Incorrect";
 }
 
 function getCurrentRoundKey() {
@@ -320,7 +353,7 @@ function updateDailyDoubleLimit() {
     return;
   }
 
-  const teamIndex = Number(dailyDoubleTeamSelect.value);
+  const teamIndex = isSoloMode() ? 0 : Number(dailyDoubleTeamSelect.value);
   const teamScore = state.teams[teamIndex];
   const limit = teamScore > 0 ? teamScore : DAILY_DOUBLE_FALLBACK_LIMIT;
 
@@ -387,7 +420,7 @@ function handleChoiceSelection(selectedIndex) {
   selectedButton.classList.add("incorrect");
   selectedButton.disabled = true;
 
-  if (state.activeClue.isDailyDouble || state.activeClue.attempts.length >= 2) {
+  if (state.activeClue.isDailyDouble || isSoloMode() || state.activeClue.attempts.length >= 2) {
     finalizeClueResolution(false, selectedIndex);
     return;
   }
@@ -420,6 +453,13 @@ function finalizeClueResolution(answeredCorrectly, selectedIndex) {
     adjustTeamScore(teamIndex, answeredCorrectly ? wager : -wager);
     state.activeClue.scoringApplied = true;
     modalFeedbackElement.innerHTML = `<strong>${answeredCorrectly ? "Correct!" : "Incorrect."}</strong> ${state.activeClue.explanation} ${state.teamNames[teamIndex]} ${answeredCorrectly ? "gains" : "loses"} ${formatCurrency(wager)}.`;
+    continueClueButton.hidden = false;
+    continueClueButton.textContent = "Continue";
+  } else if (isSoloMode()) {
+    const value = state.activeClue.value;
+    adjustTeamScore(0, answeredCorrectly ? value : -value);
+    state.activeClue.scoringApplied = true;
+    modalFeedbackElement.innerHTML = `<strong>${answeredCorrectly ? "Correct!" : "Incorrect."}</strong> ${state.activeClue.explanation} ${state.teamNames[0]} ${answeredCorrectly ? "gains" : "loses"} ${formatCurrency(value)}.`;
     continueClueButton.hidden = false;
     continueClueButton.textContent = "Continue";
   } else {
@@ -508,8 +548,14 @@ function openFinalJeopardy() {
   document.getElementById("final-feedback").hidden = true;
   document.getElementById("final-feedback").className = "feedback";
   document.getElementById("final-award-actions").hidden = true;
+  continueFinalButton.hidden = true;
+  lockFinalWagersButton.hidden = false;
+  lockFinalWagersButton.disabled = false;
   document.getElementById("final-wager-1").value = "0";
   document.getElementById("final-wager-2").value = "0";
+  document.getElementById("final-wager-1").disabled = false;
+  document.getElementById("final-wager-2").disabled = false;
+  state.finalWagers = [0, 0];
   populateFinalChoices(final.choices, final.correct_index, final.explanation);
   finalModal.showModal();
 }
@@ -523,6 +569,7 @@ function populateFinalChoices(choices, correctIndex, explanation) {
     button.type = "button";
     button.className = "choice-button";
     button.textContent = choice;
+    button.disabled = true;
     button.addEventListener("click", () => {
       const buttons = [...container.querySelectorAll(".choice-button")];
       buttons.forEach((choiceButton, innerIndex) => {
@@ -539,9 +586,32 @@ function populateFinalChoices(choices, correctIndex, explanation) {
       feedback.hidden = false;
       feedback.className = `feedback ${isCorrect ? "correct" : "incorrect"}`;
       feedback.innerHTML = `<strong>${isCorrect ? "Correct!" : "Incorrect."}</strong> ${explanation}`;
-      document.getElementById("final-award-actions").hidden = false;
+
+      if (isSoloMode()) {
+        adjustTeamScore(0, isCorrect ? state.finalWagers[0] : -state.finalWagers[0]);
+        state.finalAnswered = true;
+        feedback.innerHTML += ` ${state.teamNames[0]} ${isCorrect ? "gains" : "loses"} ${formatCurrency(state.finalWagers[0])}.`;
+        continueFinalButton.hidden = false;
+        updateStatus();
+      } else {
+        document.getElementById("final-award-actions").hidden = false;
+      }
     });
     container.appendChild(button);
+  });
+}
+
+function lockFinalWagers() {
+  state.finalWagers = [
+    Math.max(0, Number(document.getElementById("final-wager-1").value) || 0),
+    Math.max(0, Number(document.getElementById("final-wager-2").value) || 0),
+  ];
+
+  document.getElementById("final-wager-1").disabled = true;
+  document.getElementById("final-wager-2").disabled = true;
+  lockFinalWagersButton.hidden = true;
+  document.querySelectorAll("#final-choices .choice-button").forEach((button) => {
+    button.disabled = false;
   });
 }
 
@@ -550,10 +620,7 @@ function applyFinalJeopardy(result) {
     return;
   }
 
-  const wagers = [
-    Math.max(0, Number(document.getElementById("final-wager-1").value) || 0),
-    Math.max(0, Number(document.getElementById("final-wager-2").value) || 0),
-  ];
+  const wagers = state.finalWagers;
 
   if (result === "0" || result === "both") {
     adjustTeamScore(0, wagers[0]);
@@ -599,7 +666,9 @@ function updateStatus() {
   }
 
   if (state.finalAnswered) {
-    const leader = state.teams[0] === state.teams[1]
+    const leader = isSoloMode()
+      ? `${state.teamNames[0]} finished with ${formatCurrency(state.teams[0])}.`
+      : state.teams[0] === state.teams[1]
       ? "It's a tie game."
       : `${state.teamNames[state.teams[0] > state.teams[1] ? 0 : 1]} is in the lead.`;
     statusTextElement.textContent = `Final Jeopardy complete. ${leader}`;
@@ -656,12 +725,24 @@ function resetGame() {
   updateRoundIndicator();
   updateStatus();
   syncStartInputs();
+  updateSetupMode();
   startModal.showModal();
 }
 
 function syncStartInputs() {
   document.getElementById("team-1-input").value = state.teamNames[0];
   document.getElementById("team-2-input").value = state.teamNames[1];
+  document.querySelector(`[name="team-count"][value="${state.teamCount}"]`).checked = true;
+  updateSetupMode();
+}
+
+function updateSetupMode() {
+  const selectedTeamCount = Number(document.querySelector('[name="team-count"]:checked').value);
+  teamTwoInputField.hidden = selectedTeamCount === 1;
+}
+
+function isSoloMode() {
+  return state.teamCount === 1;
 }
 
 function shuffleArray(items) {

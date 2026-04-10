@@ -60,11 +60,22 @@
         </div>
       </div>
       <div class="modal-body">
+        <fieldset class="mode-toggle">
+          <legend>How many teams?</legend>
+          <label>
+            <input type="radio" name="team-count" value="1">
+            One team
+          </label>
+          <label>
+            <input type="radio" name="team-count" value="2" checked>
+            Two teams
+          </label>
+        </fieldset>
         <label class="wager-field">
           Team 1 Name
           <input id="team-1-input" type="text" maxlength="40" placeholder="Team 1">
         </label>
-        <label class="wager-field">
+        <label id="team-2-input-field" class="wager-field">
           Team 2 Name
           <input id="team-2-input" type="text" maxlength="40" placeholder="Team 2">
         </label>
@@ -161,6 +172,7 @@
             <span id="final-wager-label-2">Team 2</span> Wager
             <input id="final-wager-2" type="number" min="0" step="100" value="0">
           </label>
+          <button id="lock-final-wagers" class="primary-button" type="button">Lock Wager</button>
         </div>
         <div id="final-award-actions" class="award-buttons" hidden>
           <button id="final-team-0-button" type="button" data-final-team="0">Team 1 Correct</button>
@@ -168,6 +180,7 @@
           <button type="button" data-final-team="both">Both Correct</button>
           <button type="button" data-final-team="none" class="secondary-button">Both Incorrect</button>
         </div>
+        <button id="continue-final" class="primary-button continue-button" type="button" hidden>Continue</button>
       </div>
     </div>
   </dialog>
